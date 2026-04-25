@@ -1,0 +1,47 @@
+[
+  {
+    "age": "",
+    "city": "",
+    "familyMembers": "",
+    "salary": "",
+    "sideIncome": "",
+    "pf": "",
+    "rent": "",
+    "food": "",
+    "utilities": "",
+    "transport": "",
+    "creditCardLoan": "",
+    "personalLoan": "",
+    "homeLoan": ""
+  },
+  {
+    "age": "23",
+    "city": "mumbai",
+    "familyMembers": "2",
+    "salary": "200000",
+    "sideIncome": "0",
+    "pf": "10000",
+    "rent": "20000",
+    "food": "10000",
+    "utilities": "5000",
+    "transport": "3000",
+    "creditCardLoan": "0",
+    "personalLoan": "0",
+    "homeLoan": "0"
+  },
+  {
+    "age": "24",
+    "city": "pune",
+    "familyMembers": "2",
+    "salary": "10000",
+    "sideIncome": "0",
+    "pf": "2000",
+    "rent": "2000",
+    "food": "500",
+    "utilities": "1000",
+    "transport": "500",
+    "creditCardLoan": "0",
+    "personalLoan": "0",
+    "homeLoan": "0"
+  }
+]

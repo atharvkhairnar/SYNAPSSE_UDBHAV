@@ -1,0 +1,8 @@
+node_modules
+.next
+.env
+backend/node_modules
+frontend/node_modules
+dist
+coverage
+.DS_Store
