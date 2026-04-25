@@ -42,27 +42,51 @@ export default function DashboardPage() {
   const { summary, finance, debt, investments, retirement } = data;
 
   const expenseData = [
-  { name: "Rent", value: finance.expenses * 0.45 },
-  { name: "Food", value: finance.expenses * 0.25 },
-  { name: "Bills", value: finance.expenses * 0.15 },
-  { name: "Other", value: finance.expenses * 0.15 },
-];
+  {
+    name: "Rent",
+    value: Number(finance.rent || 0),
+  },
+  {
+    name: "Electricity",
+    value: Number(
+      finance.electricity || 0
+    ),
+  },
+  {
+    name: "Food",
+    value: Number(finance.food || 0),
+  },
+  {
+    name: "Fuel",
+    value: Number(finance.fuel || 0),
+  },
+  {
+    name: "Misc",
+    value: Number(finance.misc || 0),
+  },
+].filter(
+  (item) => item.value > 0
+);
 
 const investData = Object.entries(
   investments.monthlyPlan || {}
 ).map(([name, value]) => ({
   name,
-  value,
+  value: Number(value),
 }));
 
 const retirementData = [
   {
-    name: "Projected",
-    value: retirement.projectedCorpus,
+    name: "Target",
+    value: Number(
+      retirement.targetCorpus || 0
+    ),
   },
   {
-    name: "Target",
-    value: retirement.targetCorpus,
+    name: "Projected",
+    value: Number(
+      retirement.projectedCorpus || 0
+    ),
   },
 ];
 

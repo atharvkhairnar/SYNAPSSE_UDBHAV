@@ -215,34 +215,42 @@ function analyzeFinance(user) {
   );
 
   return {
-    income,
-    expenses,
-    monthlySurplus,
-    loans,
-    debtRatio: Number(
-      debtRatio.toFixed(1)
-    ),
-    investments,
-    pfAssets,
-    emergencyFund,
-    emergencyMonths: Number(
-      emergencyMonths.toFixed(1)
-    ),
-    totalAssets,
-    netWorth,
-    futureMonthlyNeed: Math.round(
-      futureMonthlyNeed
-    ),
-    projectedCorpus: Math.round(
-      projectedCorpus
-    ),
-    yearsLeft,
-    financialRisk,
-    wealthScore: score,
-    alerts,
-    recommendations,
-  };
+  income,
+  expenses,
+  monthlySurplus,
+  loans,
+  debtRatio: Number(
+    debtRatio.toFixed(1)
+  ),
+  investments,
+  pfAssets,
+  emergencyFund,
+  emergencyMonths: Number(
+    emergencyMonths.toFixed(1)
+  ),
+  totalAssets,
+  netWorth,
+
+  rent: toNum(user.rent),
+  electricity: toNum(user.electricity),
+  food: toNum(user.food),
+  fuel: toNum(user.fuel),
+  misc: toNum(user.misc),
+
+  futureMonthlyNeed: Math.round(
+    futureMonthlyNeed
+  ),
+  projectedCorpus: Math.round(
+    projectedCorpus
+  ),
+  yearsLeft,
+  financialRisk,
+  wealthScore: score,
+  alerts,
+  recommendations,
+};
 }
+
 
 module.exports = {
   analyzeFinance,
