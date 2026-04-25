@@ -1,4 +1,4 @@
-## WealthPath 💸
+# WealthPath 💸
 
 ### AI-Powered Financial Priority Planner for Young Earners
 
@@ -7,67 +7,80 @@
 
 ---
 
-## 🚀 About WealthPath
+# 🌐 Live Links
 
-**WealthPath** is an intelligent financial planning platform designed to help **students, first-job professionals, and young earners** take control of their money.
+### 🚀 Deployed App
 
-Instead of just showing numbers like traditional budgeting apps, WealthPath gives users **clear priorities, smart decisions, and a roadmap to wealth creation**.
+https://main.d24jv57gw548m.amplifyapp.com
+
+### 💻 GitHub Repository
+
+https://github.com/atharvkhairnar/SYNAPSSE_UDBHAV.git
+
+---
+
+# 🚀 About WealthPath
+
+**WealthPath** is an intelligent financial planning platform built to help **students, first-job professionals, and young earners** take control of their money.
+
+Traditional finance apps only track expenses.
+
+**WealthPath goes further** — it tells users exactly **what to do next** with their money.
 
 It helps users:
 
-✅ Eliminate debt faster
-✅ Build emergency savings
-✅ Invest strategically
-✅ Plan retirement early
-✅ Improve financial discipline
-✅ Understand what to do next with money
+* ✅ Eliminate debt faster
+* ✅ Build emergency savings
+* ✅ Invest strategically
+* ✅ Plan retirement early
+* ✅ Improve discipline
+* ✅ Build long-term wealth
 
 ---
 
 # 🔥 Why WealthPath?
 
-Most finance apps focus only on:
+Most money apps only provide:
 
-* Expense tracking
-* Budget logging
-* Transaction summaries
+* Expense logs
+* Budgets
+* Graphs
+* Transactions
 
-But users don’t need more dashboards.
+But users actually need answers like:
 
-## They need answers like:
-
-* Should I pay my loan first or invest first?
-* How much emergency fund do I need?
-* Which debt should I close first?
-* How should I split investments monthly?
+* Should I clear debt first or invest first?
+* How much emergency fund should I keep?
+* Which loan should I close first?
 * Can I retire early?
-* Am I financially healthy right now?
+* Am I financially healthy?
+* How should I invest monthly?
 
 ---
 
 # 💡 Our Solution
 
-WealthPath converts raw financial data into an **AI-generated action plan**.
+WealthPath converts user financial data into a **personalized action roadmap**.
 
-Users simply enter:
+Users enter:
 
 * Income
 * Expenses
 * Loans
 * Investments
-* Insurance
 * Savings
+* Insurance
 * Retirement goals
 
 And WealthPath generates:
 
-🎯 Personalized Financial Roadmap
-📉 Debt Elimination Strategy
-🛡 Emergency Fund Plan
-📈 Smart Investment Allocation
-📊 Financial Health Score
-💰 Future Wealth Projections
-🏖 Retirement Planning Model
+* 🎯 Personalized Roadmap
+* 📉 Debt Elimination Strategy
+* 🛡 Emergency Fund Plan
+* 📈 Smart Investment Allocation
+* 📊 Wealth Score
+* 💰 Future Wealth Projection
+* 🏖 Retirement Plan
 
 ---
 
@@ -75,65 +88,56 @@ And WealthPath generates:
 
 ## 📊 1. Financial Health Dashboard
 
-A premium visual dashboard showing:
+Premium dashboard showing:
 
 * Monthly Income
 * Monthly Expenses
-* Free Cash Flow
-* Debt Burden Ratio
+* Cash Flow
+* Debt Ratio
 * Emergency Fund Strength
-* Current Investments
-* Net Worth Snapshot
-
-> Gives users one-screen financial clarity.
+* Investments
+* Net Worth
 
 ---
 
 ## 💳 2. Debt Elimination Planner
 
-Uses **Avalanche Method Logic** (highest interest first).
+Uses **Avalanche Strategy**.
 
-### Outputs:
+Outputs:
 
-* Recommended loan payoff order
-* Interest saved estimate
+* Priority loan payoff order
 * Debt-free timeline
-* EMI optimization suggestions
-
-> Helps users become debt-free faster.
+* Monthly payment strategy
+* Faster closure plan
 
 ---
 
 ## 🛡 3. Emergency Fund Shield
 
-Calculates survival runway.
+Calculates:
 
-### Shows:
-
-* Months of expenses covered
-* Recommended reserve target
-* Monthly saving needed
-
-> Protects users from job loss or emergencies.
+* Survival runway
+* Target reserve amount
+* Saving needed monthly
 
 ---
 
 ## 📈 4. Smart Investment Planner
 
-Suggests monthly allocation across:
+Suggests allocations across:
 
-* EPF / PF
+* PF / EPF
 * Gold
 * Bonds
-* Liquid Funds
-* Index Funds
+* Nifty Index
 * Midcap Funds
 * Smallcap Funds
 
 Based on:
 
-* Risk profile
-* Income level
+* Risk level
+* Income
 * Debt load
 * Goals
 
@@ -141,43 +145,36 @@ Based on:
 
 ## 🤖 5. AI Recommendation Engine
 
-Multi-perspective decision system:
-
-### Modes:
+Decision modes:
 
 * 🚀 Growth Focused
 * 🛡 Safety First
 * ⚖ Balanced Strategy
 
-Then final optimized recommendation is generated.
+Then generates optimized final recommendation.
 
 ---
 
-## 🏖 6. Future Wealth Planner
+## 🏖 6. Retirement Planner
 
-Helps users prepare long-term future.
+Calculates:
 
-Includes:
-
-* Retirement corpus required
-* SIP target needed
-* Inflation-adjusted planning
-* SWP after retirement
+* Retirement corpus target
+* SIP needed
+* Inflation adjusted needs
+* Future wealth projection
 
 ---
 
 # 👨‍💻 User Journey
 
 ```text
-1. Create Profile
-2. Add Income Sources
-3. Add Expenses
-4. Add Loans / EMI
-5. Add Investments
-6. Add Savings & Insurance
-7. AI Analysis Runs
-8. Dashboard Generated
-9. Action Plan Delivered
+1. User Enters Financial Data
+2. AI Analysis Begins
+3. Backend Planning Engines Run
+4. Dashboard Loads Instantly
+5. Debt + Investment + Retirement Plans Generated
+6. User Gets Clear Next Steps
 ```
 
 ---
@@ -188,72 +185,68 @@ Includes:
 
 * Debt-to-income ratio
 * Emergency runway logic
-* Goal prioritization
+* Surplus allocation
 * Risk balancing
-* Retirement math
+* Retirement planning math
 
 ### AI Intelligence:
 
-* Scenario comparison
 * Personalized advice
-* Habit suggestions
-* Future forecasting
+* Forecasting
+* Habit recommendations
+* Priority ranking
 
 ---
 
-# 🏗 System Architecture
+# 🏗 Current System Architecture
 
 ```text
 User Input
    ↓
-Frontend Dashboard
+Next.js Frontend (AWS Amplify)
    ↓
-API / Backend Engine
+Express Backend API (Render)
    ↓
-Financial Rules Engine
+Finance Engines
+   ├── Debt Engine
+   ├── Investment Engine
+   ├── Retirement Engine
    ↓
-AI Recommendation Layer
+JSON Storage (temporary)
    ↓
-Firestore Database
-   ↓
-Personalized Results Dashboard
+Dashboard Results
 ```
 
 ---
 
-# ⚙ Tech Stack
+# ⚙ Current Tech Stack
 
 ## Frontend
 
 * Next.js
+* TypeScript
 * Tailwind CSS
-* shadcn/ui
+* Recharts
 * Framer Motion
 
 ## Backend
 
-* Next.js API Routes
-* Server Actions
+* Node.js
+* Express.js
 
-## Database
+## Hosting
 
-* Firebase Firestore
+* AWS Amplify (Frontend)
+* Render (Backend)
 
-## AI Layer
+## Storage
 
-* Vertex AI
-* Gemini Models
+* users.json (temporary MVP storage)
 
-## Infrastructure
+## Future AI Layer
 
-* Google Cloud Run
-* Cloud Storage
-
-## Development Tools
-
-* VS Code
-* Continue Extension
-* GitHub
+* AWS Bedrock / Nova Lite
+* Vertex AI / Gemini
 
 ---
 
@@ -263,55 +256,52 @@ Personalized Results Dashboard
 * First Salary Earners
 * Young Professionals
 * Freelancers
-* Families Starting Financial Planning
+* Families Starting Finance Journey
 * Anyone confused about money priorities
 
 ---
 
 # 🌍 Real World Impact
 
-WealthPath can help reduce:
+WealthPath helps reduce:
 
-❌ Debt traps
-❌ Random investing
-❌ Financial stress
-❌ Poor planning
-❌ No emergency preparedness
+* ❌ Debt traps
+* ❌ Random investing
+* ❌ No planning
+* ❌ Financial stress
 
-And improve:
+And improves:
 
-✅ Wealth creation
-✅ Confidence
-✅ Stability
-✅ Smart habits
-✅ Long-term freedom
+* ✅ Wealth creation
+* ✅ Confidence
+* ✅ Smart habits
+* ✅ Stability
+* ✅ Financial freedom
 
 ---
 
 # 🔥 Why WealthPath Can Win
 
-### Because it solves a REAL problem.
+Millions earn money but still ask:
 
-Millions earn money... but don’t know:
+> “What should I do first with my salary?”
 
-> “What should I do first?”
+**WealthPath answers that.**
 
-WealthPath gives that answer intelligently.
-
-It is practical, scalable, impactful, and highly relevant for India’s young generation.
+That makes it useful, scalable, and powerful.
 
 ---
 
 # 🔮 Future Scope
 
-* UPI & Bank Auto Sync
-* Credit Score Integration
 * AI Financial Coach Chatbot
-* Tax Planning Module
-* Goal Planner (Car/Home/Marriage)
+* UPI / Bank Sync
+* Credit Score Integration
+* Tax Planning
+* Goal Planning (Car / Home / Marriage)
 * Family Finance Mode
-* Mutual Fund Auto Suggestions
-* Regional Language Support
+* Regional Languages
+* Real Database Upgrade
 
 ---
 
@@ -328,8 +318,8 @@ It is practical, scalable, impactful, and highly relevant for India’s young ge
 
 # 🏁 Final Statement
 
-**WealthPath is not just a finance tracker.**
-It is a **financial decision engine** for the next generation.
+**WealthPath is not just a tracker.**
+It is a **Financial Decision Engine** for the next generation.
 
 > Earn Smart. Save Smart. Grow Smart.
 > **Build Your WealthPath.**

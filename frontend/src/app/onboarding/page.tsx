@@ -569,7 +569,7 @@ export default function OnboardingPage() {
           );
 
           const res = await fetch(
-            "http://127.0.0.1:5001/api/users",
+            "https://synapsse-udbhav.onrender.com/api/users",
             {
               method: "POST",
               headers: {

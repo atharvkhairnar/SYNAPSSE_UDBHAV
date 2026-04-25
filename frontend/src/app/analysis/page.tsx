@@ -27,8 +27,7 @@ export default function AnalysisPage() {
   // Real backend call
   useEffect(() => {
     fetch(
-      "http://127.0.0.1:5001/api/report/latest"
-    )
+"https://synapsse-udbhav.onrender.com/api/report/latest"    )
       .then((res) => res.json())
       .then((data) => {
         setReport(data);
