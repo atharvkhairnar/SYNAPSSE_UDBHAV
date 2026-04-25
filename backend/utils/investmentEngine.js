@@ -3,6 +3,8 @@ function toNum(value) {
 }
 
 function buildInvestmentPlan(user) {
+  const age = toNum(user.age);
+
   const income =
     toNum(user.salary) +
     toNum(user.familyIncome) +
@@ -17,6 +19,9 @@ function buildInvestmentPlan(user) {
     toNum(user.recharge) +
     toNum(user.misc);
 
+  const emergencyFund =
+    toNum(user.emergencyFund);
+
   const loans =
     toNum(user.creditCardLoan) +
     toNum(user.personalLoan) +
@@ -24,40 +29,87 @@ function buildInvestmentPlan(user) {
     toNum(user.carLoan) +
     toNum(user.homeLoan);
 
-  const surplus = income - expenses;
+  let monthlySurplus =
+    income - expenses;
 
-  let investable = surplus;
-
-  if (loans > 0) {
-    investable = surplus * 0.3;
+  if (monthlySurplus < 0) {
+    monthlySurplus = 0;
   }
 
-  if (investable < 0) investable = 0;
+  const emergencyMonths =
+    expenses > 0
+      ? emergencyFund / expenses
+      : 0;
 
   const risk =
-    user.riskLevel || "balanced";
+    user.riskLevel ||
+    "balanced";
+
+  let investableAmount =
+    monthlySurplus;
+
+  let strategy =
+    "Start disciplined investing.";
+
+  // Debt pressure logic
+  if (loans > 0) {
+    investableAmount =
+      monthlySurplus * 0.4;
+
+    strategy =
+      "Debt exists: focus majority surplus on repayment.";
+  }
+
+  // Low emergency fund logic
+  if (
+    emergencyMonths < 6
+  ) {
+    investableAmount =
+      monthlySurplus * 0.3;
+
+    strategy =
+      "Low emergency reserve: build safety fund first.";
+  }
+
+  investableAmount =
+    Math.round(
+      investableAmount
+    );
 
   let allocation = {};
 
-  if (risk === "conservative") {
+  // Conservative
+  if (
+    risk ===
+    "conservative"
+  ) {
     allocation = {
-      FD: 35,
-      Bonds: 30,
-      Gold: 15,
-      Nifty50: 15,
-      Midcap: 5,
-      Smallcap: 0,
+      FD: 30,
+      Bonds: 25,
+      Gold: 10,
+      Nifty50: 20,
+      Midcap: 10,
+      Smallcap: 5,
     };
-  } else if (risk === "aggressive") {
+  }
+
+  // Aggressive
+  else if (
+    risk ===
+    "aggressive"
+  ) {
     allocation = {
       FD: 5,
-      Bonds: 10,
-      Gold: 10,
-      Nifty50: 35,
-      Midcap: 20,
+      Bonds: 5,
+      Gold: 5,
+      Nifty50: 40,
+      Midcap: 25,
       Smallcap: 20,
     };
-  } else {
+  }
+
+  // Balanced default
+  else {
     allocation = {
       FD: 15,
       Bonds: 15,
@@ -68,23 +120,39 @@ function buildInvestmentPlan(user) {
     };
   }
 
+  // Age adjustment
+  if (age >= 45) {
+    allocation.Smallcap = 5;
+    allocation.Midcap = 10;
+    allocation.FD += 10;
+    allocation.Bonds += 5;
+  }
+
   const monthlyPlan = {};
 
-  Object.keys(allocation).forEach(
-    (key) => {
-      monthlyPlan[key] = Math.round(
-        (investable * allocation[key]) /
+  Object.keys(
+    allocation
+  ).forEach((key) => {
+    monthlyPlan[key] =
+      Math.round(
+        (investableAmount *
+          allocation[key]) /
           100
       );
-    }
-  );
+  });
 
   return {
-    monthlySurplus: surplus,
-    investableAmount: Math.round(
-      investable
-    ),
-    riskProfile: risk,
+    monthlySurplus,
+    investableAmount,
+    riskProfile:
+      risk,
+    emergencyMonths:
+      Number(
+        emergencyMonths.toFixed(
+          1
+        )
+      ),
+    strategy,
     allocation,
     monthlyPlan,
   };

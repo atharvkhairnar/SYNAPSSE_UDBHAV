@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,6 +12,8 @@ import {
 
 export default function OnboardingPage() {
   const [step, setStep] = useState(1);
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const totalSteps = 7;
 
@@ -533,58 +536,75 @@ export default function OnboardingPage() {
           )}
 
           {/* Navigation */}
-          <div className="flex justify-between mt-10">
+<div className="flex justify-between mt-10">
 
-            <button
-              onClick={prev}
-              className="px-5 py-3 rounded-2xl border border-white/10 hover:bg-white/10"
-            >
-              <ArrowLeft size={18} />
-            </button>
+  <button
+    onClick={prev}
+    className="px-5 py-3 rounded-2xl border border-white/10 hover:bg-white/10"
+  >
+    <ArrowLeft size={18} />
+  </button>
 
-            {step < totalSteps ? (
-              <button
-                onClick={next}
-                className="px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-400 flex items-center gap-2"
-              >
-                Next <ArrowRight size={18} />
-              </button>
-            ) : (
-              <button
-                onClick={async () => {
-                  try {
-                    const res = await fetch(
-                      "http://127.0.0.1:5001/api/users",
-                      {
-                        method: "POST",
-                        headers: {
-                          "Content-Type":
-                            "application/json",
-                        },
-                        body: JSON.stringify(formData),
-                      }
-                    );
+  {step < totalSteps ? (
+    <button
+      onClick={next}
+      className="px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-400 flex items-center gap-2"
+    >
+      Next <ArrowRight size={18} />
+    </button>
+  ) : (
+    <button
+      disabled={loading}
+      onClick={async () => {
+        try {
+          setLoading(true);
 
-                    if (res.ok) {
-                      window.location.href =
-                        "/analysis";
-                    } else {
-                      alert("Failed to save data");
-                    }
-                  } catch {
-                    alert("Backend connection failed");
-                  }
-                }}
-                className="px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-400"
-              >
-                Analyze My Wealth
-              </button>
-            )}
+          const cleanData = Object.fromEntries(
+            Object.entries(formData).map(
+              ([key, value]) => [
+                key,
+                value === "" ? 0 : value,
+              ]
+            )
+          );
 
-          </div>
+          const res = await fetch(
+            "http://127.0.0.1:5001/api/users",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type":
+                  "application/json",
+              },
+              body: JSON.stringify(
+                cleanData
+              ),
+            }
+          );
 
-        </div>
-      </div>
-    </main>
-  );
+          if (!res.ok) {
+            throw new Error();
+          }
+
+          router.push("/analysis");
+        } catch {
+          alert("Failed to save data");
+        } finally {
+          setLoading(false);
+        }
+      }}
+      className="px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-400"
+    >
+      {loading
+        ? "Saving..."
+        : "Analyze My Wealth"}
+    </button>
+  )}
+
+</div>
+
+</div>
+</div>
+</main>
+);
 }

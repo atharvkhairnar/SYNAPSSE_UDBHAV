@@ -2,122 +2,213 @@ function toNum(value) {
   return Number(value || 0);
 }
 
-function futureCost(current, inflation, years) {
-  return current * Math.pow(1 + inflation, years);
+function futureValue(
+  amount,
+  rate,
+  years
+) {
+  return (
+    amount *
+    Math.pow(
+      1 + rate,
+      years
+    )
+  );
 }
 
-function sipFutureValue(monthly, annualRate, months) {
-  const r = annualRate / 12;
+function sipFutureValue(
+  monthly,
+  annualRate,
+  months
+) {
+  const r =
+    annualRate / 12;
 
   if (r === 0) {
-    return monthly * months;
+    return (
+      monthly * months
+    );
   }
 
   return (
     monthly *
-    ((Math.pow(1 + r, months) - 1) / r) *
+    (
+      (Math.pow(
+        1 + r,
+        months
+      ) - 1) / r
+    ) *
     (1 + r)
   );
 }
 
-function buildRetirementPlan(user) {
-  const age = toNum(user.age);
-  const retirementAge =
-    toNum(user.retirementAge) || 60;
+function buildRetirementPlan(
+  user
+) {
+  const age =
+    toNum(user.age);
 
-  const yearsLeft = Math.max(
-    0,
-    retirementAge - age
-  );
+  const retirementAge =
+    toNum(
+      user.retirementAge
+    ) || 60;
+
+  const yearsLeft =
+    Math.max(
+      0,
+      retirementAge - age
+    );
 
   const monthlyExpenses =
     toNum(user.rent) +
-    toNum(user.electricity) +
+    toNum(
+      user.electricity
+    ) +
     toNum(user.food) +
     toNum(user.milk) +
     toNum(user.fuel) +
-    toNum(user.recharge) +
+    toNum(
+      user.recharge
+    ) +
     toNum(user.misc);
 
   const currentAssets =
     toNum(user.fd) +
     toNum(user.bonds) +
     toNum(user.gold) +
-    toNum(user.nifty50) +
-    toNum(user.midcap) +
-    toNum(user.smallcap) +
-    toNum(user.totalPF);
+    toNum(
+      user.nifty50
+    ) +
+    toNum(
+      user.midcap
+    ) +
+    toNum(
+      user.smallcap
+    ) +
+    toNum(
+      user.totalPF
+    );
 
-  const inflation = 0.06;
-  const growth = 0.12;
-  const safeWithdrawRate = 0.04;
+  const income =
+    toNum(user.salary) +
+    toNum(
+      user.familyIncome
+    ) +
+    toNum(
+      user.sideIncome
+    );
+
+  let monthlySurplus =
+    income -
+    monthlyExpenses;
+
+  if (
+    monthlySurplus < 0
+  ) {
+    monthlySurplus = 0;
+  }
+
+  const inflation =
+    0.06;
+
+  const growth =
+    0.12;
+
+  const safeWithdraw =
+    0.04;
 
   const futureMonthlyNeed =
-    futureCost(
+    futureValue(
       monthlyExpenses,
       inflation,
       yearsLeft
     );
 
   const annualNeed =
-    futureMonthlyNeed * 12;
+    futureMonthlyNeed *
+    12;
 
   const targetCorpus =
-    annualNeed / safeWithdrawRate;
+    annualNeed /
+    safeWithdraw;
 
-  const income =
-    toNum(user.salary) +
-    toNum(user.familyIncome) +
-    toNum(user.sideIncome);
-
-  const monthlySurplus =
-    income - monthlyExpenses;
-
-  const sipAmount =
-    monthlySurplus > 0
-      ? monthlySurplus * 0.5
-      : 0;
+  const currentMonthlySIP =
+    Math.round(
+      monthlySurplus *
+        0.5
+    );
 
   const projectedCorpus =
-    sipFutureValue(
-      sipAmount,
-      growth,
-      yearsLeft * 12
-    ) + currentAssets;
+    Math.round(
+      sipFutureValue(
+        currentMonthlySIP,
+        growth,
+        yearsLeft * 12
+      ) +
+        futureValue(
+          currentAssets,
+          growth,
+          yearsLeft
+        )
+    );
 
-  const gap =
-    targetCorpus - projectedCorpus;
+  let gap =
+    targetCorpus -
+    projectedCorpus;
 
-  const requiredSIP =
+  if (gap < 0) {
+    gap = 0;
+  }
+
+  const extraMonthlySIP =
     yearsLeft > 0
-      ? Math.max(
-          0,
-          gap / (yearsLeft * 12)
+      ? Math.round(
+          gap /
+            (yearsLeft *
+              12)
         )
       : 0;
+
+  const swpMonthly =
+    Math.round(
+      targetCorpus *
+        safeWithdraw /
+        12
+    );
+
+  const onTrack =
+    gap === 0;
+
+  let strategy =
+    "You are on a healthy retirement path.";
+
+  if (!onTrack) {
+    strategy =
+      "Increase monthly SIP and reduce leakages to close retirement gap.";
+  }
 
   return {
     currentAge: age,
     retirementAge,
     yearsLeft,
-    futureMonthlyNeed: Math.round(
-      futureMonthlyNeed
-    ),
-    targetCorpus: Math.round(
-      targetCorpus
-    ),
-    projectedCorpus: Math.round(
-      projectedCorpus
-    ),
-    retirementGap: Math.round(
-      gap > 0 ? gap : 0
-    ),
-    currentMonthlySIP: Math.round(
-      sipAmount
-    ),
+    futureMonthlyNeed:
+      Math.round(
+        futureMonthlyNeed
+      ),
+    targetCorpus:
+      Math.round(
+        targetCorpus
+      ),
+    projectedCorpus,
+    retirementGap:
+      Math.round(gap),
+    currentMonthlySIP,
     suggestedMonthlySIP:
-      Math.round(requiredSIP),
-    onTrack: gap <= 0,
+      extraMonthlySIP,
+    swpMonthlyIncome:
+      swpMonthly,
+    onTrack,
+    strategy,
   };
 }
 
