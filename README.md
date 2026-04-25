@@ -319,10 +319,10 @@ It is practical, scalable, impactful, and highly relevant for India’s young ge
 
 ### Team Members
 
-* Yash Patidar
-* Prince Patidar
-* Harsh Patidar
-* Meet Patidar
+* Srushti Kothawade
+* Atharv Khairnar
+* Aditya Chopade
+* Shivani Kasav
 
 ---
 
