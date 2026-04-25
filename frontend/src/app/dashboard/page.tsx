@@ -78,25 +78,28 @@ const investData = Object.entries(
 const retirementData = [
   {
     name: "Target",
-    value: Number(
-      retirement.targetCorpus || 0
-    ),
+    value:
+      Number(
+        retirement.targetCorpus || 0
+      ) / 10000000,
   },
   {
     name: "Projected",
-    value: Number(
-      retirement.projectedCorpus || 0
-    ),
+    value:
+      Number(
+        retirement.projectedCorpus || 0
+      ) / 10000000,
   },
 ];
 
 const COLORS = [
-  "#10b981",
-  "#3b82f6",
-  "#f59e0b",
-  "#8b5cf6",
-  "#ef4444",
-  "#14b8a6",
+ "#10b981",
+ "#3b82f6",
+ "#f59e0b",
+ "#8b5cf6",
+ "#ef4444",
+ "#14b8a6",
+
 ];
 
   return (
@@ -334,9 +337,22 @@ const COLORS = [
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={retirementData}>
                   <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Bar dataKey="value" />
+                  <YAxis
+  tickFormatter={(v) =>
+    `${v.toFixed(1)} Cr`
+  }
+/>
+                  <Tooltip
+  formatter={(value: any) => [
+    `₹${Number(value).toFixed(2)} Cr`,
+    "Corpus",
+  ]}
+/>
+                  <Bar
+  dataKey="value"
+  radius={[10, 10, 0, 0]}
+  fill="#10b981"
+/>
                 </BarChart>
               </ResponsiveContainer>
             </div>

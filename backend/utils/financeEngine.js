@@ -141,12 +141,20 @@ function analyzeFinance(user) {
   // ======================
   // WEALTH SCORE
   // ======================
-  let score =
-    50 +
-    monthlySurplus / 1000 +
-    totalAssets / 100000 +
-    emergencyMonths * 3 -
-    debtRatio / 4;
+  let score = 35;
+
+score += monthlySurplus / 5000;
+score += totalAssets / 500000;
+score += emergencyMonths * 2.5;
+score -= debtRatio / 2.5;
+
+if (loans > income * 6) {
+  score -= 10;
+}
+
+if (monthlySurplus < 0) {
+  score -= 15;
+}
 
   score = Math.max(
     10,
